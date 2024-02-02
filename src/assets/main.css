@@ -1,0 +1,62 @@
+#app {
+    margin: 0; padding: 0;
+}
+
+body, h1 {
+    margin: 0; padding: 0;
+}
+
+.centered {
+    width: 100%;
+    text-align: center;   
+}
+
+.outline-button {
+    background-color: transparent;
+    border: 2px solid #a56cc1;
+    color: #f0f0f0; 
+    padding: 2px 7px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;   
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+.outline-button:hover {
+    background-color: #a56cc1;;
+    color: white;
+}
+
+.selected-outline-button {
+    background-color: #a56cc1; 
+    color: white;
+    border-color: white;   
+}
+
+
+.action-button {   
+    background-image: linear-gradient(to right, #287a91, #804d9c); 
+    color: white; 
+    padding: 0.75rem 3.5rem; 
+    font-size: 1.1rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-weight:700;
+    cursor: pointer;
+    border-radius: 0.5rem; 
+    transition: box-shadow 0.3s, transform 0.3s; 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2); 
+    border: 0.2rem solid white;
+}
+
+.action-button:hover, .action-button:focus {
+    background-image: linear-gradient(to right, #32a9c4, #a56cc1); 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4); 
+    transform: translateY(-2px); 
+    color: white; 
+    
+}
