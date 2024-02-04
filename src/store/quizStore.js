@@ -23,10 +23,7 @@ export const useQuizStore = defineStore('quiz', {
             };
         },
         getQuestion: (state) => {
-            return (questionNo) => {
-                console.log(`state.questionData ${state.questionData}`)
-                console.log(`Accessing question at index: ${questionNo}, Total questions: ${state.questionData.length}`);
-                console.log(`what i'm hoping to return ${state.questionData[questionNo]}`) 
+            return (questionNo) => {  
                 return state.questionData[questionNo]
             } 
         }
@@ -52,8 +49,9 @@ export const useQuizStore = defineStore('quiz', {
             this.questionData[questionNo] = answer
         } 
 
-    },
+    }, 
     persist: {
-        storage: sessionStorage
-    }
+        storage: sessionStorage, 
+    },
+  //  persist: true
 });

@@ -1,19 +1,24 @@
 <script setup>
-    import { useRoute } from 'vue-router';
+    import { useRoute, useRouter } from 'vue-router';
     import { useQuizStore } from '@/store/quizStore'    
 
-    import { computed } from 'vue'
+    import { computed, watch, ref } from 'vue'
 
     const route = useRoute();
+    const router = useRouter();
     const store = useQuizStore();   
 
-    const questionNo = +route.params.questionNo
-    const question = computed(() => store.getQuestion(questionNo - 1))  
+    // set initial values of question number and get 1st question
+    const questionNo = ref(+route.params.questionNo)
   
-    console.log(questionNo)
-    console.log(question)
-    console.log(question.value);
-    console.log(question.value.questionText)
+    // set up computed property for question to obtain reactivity
+    const question = computed(() => store.getQuestion(questionNo.value - 1))  
+ 
+    // Watch for changes in the route parameters and update questionNo 
+    // computed property for the question will then automatically change
+    watch(() => route.params.questionNo, (newQuestionNo) => 
+        questionNo.value = +newQuestionNo    
+    );
 
     const answerSelected = (answerLetter) => {
         console.log(answerLetter)
@@ -23,14 +28,26 @@
 
 <template>
     <div class="question-page">
-        <h1 class="text-div">Question Number: {{ questionNo }}</h1>
-        <ul>
-            <!-- <li v-for="(answer, index) in question.value.possibleAnswers"
+        <h1 class="text-div question">Question Number: {{ questionNo }}</h1>
+        <p class="text-div question-text">Q. {{ question.questionText }}</p>
+        <ul class="answer-options">
+            <li v-for="(answer, index) in question.possibleAnswers"
                                         :key="index" @click="answerSelected(answer.answerLetter)"
                 class="text-div" >
-                {{ answer.answerLetter }} {{ answer.answerText }}
-            </li> -->
+                {{ answer.answerLetter }}. {{ answer.answerText }}
+            </li>
         </ul>
+        <div class="navigate">
+            
+            <RouterLink :to="{ name: 'question', params: { questionNo: questionNo - 1 }}"
+                 v-if="questionNo != 1" type="submit" name="action" 
+                 value="previous" class="prev-btn">
+                <font-awesome-icon :icon="['fas', 'backward']" /> Previous</RouterLink>         
+         
+            <RouterLink  :to="{ name: 'question', params: { questionNo: questionNo + 1 }}" 
+                v-if="questionNo !=10" type="submit" name="action" value="next" class="next-btn">
+                Next <font-awesome-icon :icon="['fas', 'forward']" /></RouterLink>           
+        </div>
     </div>
 
 </template>
@@ -41,11 +58,43 @@
         flex-direction: column;
         justify-items: space-around;
     }
+
+    .question {
+        margin-top: 3rem;
+    }
     .text-div {
-        height: 3rem;
-        width: 30rem;
+        padding: 0.75rem;
+        width: 100%;
+        margin-bottom: 0.5rem;
         background-color: white;
-        color: black;
+        color: #012746;
+        border-radius: 0.4rem;
     }
 
+    .question-text {
+        margin-bottom: 1.5rem; 
+    }
+
+    .answer-options {
+        list-style-type: none;
+    }
+
+    .navigate {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .navigate .prev-btn {
+        margin-right: auto;
+    }
+
+    .navigate .next-btn {
+        margin-left: auto;
+    }
+
+    .navigate .prev-btn, .navigate .next-btn {
+        color: white;
+        background-color: transparent;
+    }
 </style>

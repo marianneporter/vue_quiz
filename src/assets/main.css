@@ -1,9 +1,12 @@
-#app {
+* {
+    box-sizing: border-box;
     margin: 0; padding: 0;
 }
 
-body, h1 {
-    margin: 0; padding: 0;
+button {
+    background: none;
+    color: inherit;
+    border: none;
 }
 
 .centered {
