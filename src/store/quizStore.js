@@ -21,6 +21,14 @@ export const useQuizStore = defineStore('quiz', {
             {
                 return state.selectedDifficulty === difficulty
             };
+        },
+        getQuestion: (state) => {
+            return (questionNo) => {
+                console.log(`state.questionData ${state.questionData}`)
+                console.log(`Accessing question at index: ${questionNo}, Total questions: ${state.questionData.length}`);
+                console.log(`what i'm hoping to return ${state.questionData[questionNo]}`) 
+                return state.questionData[questionNo]
+            } 
         }
     },
     actions: {
@@ -39,7 +47,13 @@ export const useQuizStore = defineStore('quiz', {
                 console.error('Error loading questions:', error);
                
             }
-        },     
+        },  
+        setAnswer(questionNo, answer)  {
+            this.questionData[questionNo] = answer
+        } 
 
+    },
+    persist: {
+        storage: sessionStorage
     }
 });

@@ -1,17 +1,17 @@
 <script setup>
     import { onMounted } from 'vue'
+    import { useRouter } from 'vue-router';
     import { categories, difficulties } from '@/constants/options.js' 
     import { defaults } from '@/constants/defaults'
     import { useQuizStore } from '@/store/quizStore'
 
     const store = useQuizStore();
 
-    onMounted(() => {
-        console.log(defaults.category)
-        console.log(defaults.difficulty)
+    const router = useRouter();
+
+    onMounted(() => { 
         store.setCategory(defaults.category);
-        store.setDifficulty(defaults.difficulty);
-        console.log('category in store = ' + store.selectedCategory)
+        store.setDifficulty(defaults.difficulty);       
     });  
     
     const changeSelectedCategory
@@ -20,8 +20,9 @@
     const changeSelectedDifficulty
               = (difficulty) => store.setDifficulty(difficulty)
 
-    const getQuestionsAndNavigate = () => {
-        store.loadQuestions();
+    const getQuestionsAndNavigate = async () => {
+        await store.loadQuestions()            
+        router.push({ name: 'question',  params: { questionNo: 1 } });
     }
 
  

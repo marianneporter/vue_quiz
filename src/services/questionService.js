@@ -7,14 +7,11 @@ export const fetchQuestions = async (category, difficulty) => {
     try {
         const response = await axios.get(`${BASE_URL}/questions`, {
             params: { category, difficulty },
-        });
-        console.log('questions fetched successfully')
-        console.log(response.data)
+        });       
        
        const formattedQuestions
-         = response.data.map((question, index) => formatQuestion(question, index));
-        
-       console.log(formattedQuestions)
+         = response.data.map((question, index) => formatQuestion(question, index));        
+   
        return formattedQuestions;
       
     } catch (error) {
@@ -23,6 +20,7 @@ export const fetchQuestions = async (category, difficulty) => {
     }
 }
 
+// get api data into simple QuestionData format ready for straightforward use in the app
 function formatQuestion(question, index) {
     let formattedQuestion = new QuestionData();
     formattedQuestion.questionNo = index + 1;
