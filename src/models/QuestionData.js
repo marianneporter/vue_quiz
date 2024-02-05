@@ -5,7 +5,5 @@ export class QuestionData {
     userAnswerLetter = "";
     possibleAnswers = [];   
 
-    isCorrect() {
-       return true;
-    }
+
 }

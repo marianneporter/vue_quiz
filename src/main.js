@@ -6,6 +6,14 @@ import { faForward, faBackward } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faBackward, faForward);
 
+import WebFont from 'webfontloader';
+
+WebFont.load({
+    google: {
+        families: ['Open+Sans:400,600,700,800']
+    }
+});
+
 import { createApp } from 'vue'
 
 import { createPinia } from 'pinia';

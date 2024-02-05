@@ -3,6 +3,10 @@
     margin: 0; padding: 0;
 }
 
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
 button {
     background: none;
     color: inherit;
@@ -26,7 +30,7 @@ button {
     cursor: pointer;
     border-radius: 8px;
     transition: background-color 0.3s, color 0.3s;
-  }
+}
   
 .outline-button:hover {
     background-color: #a56cc1;;

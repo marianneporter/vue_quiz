@@ -45,8 +45,8 @@ export const useQuizStore = defineStore('quiz', {
                
             }
         },  
-        setAnswer(questionNo, answer)  {
-            this.questionData[questionNo] = answer
+        setAnswer(questionNo, answer)  { 
+            this.questionData[questionNo].userAnswerLetter = answer
         } 
 
     }, 
