@@ -23,6 +23,10 @@ export const useQuizStore = defineStore('quiz', {
                 return state.selectedDifficulty === difficulty
             };
         },
+        
+        getQuestionData: (state) => {
+            return [ ...state.questionData ]
+        },
         getQuestion: (state) => {
             return (questionNo) => {  
                 return state.questionData[questionNo]
@@ -31,11 +35,27 @@ export const useQuizStore = defineStore('quiz', {
         getQuestionCount: (state) => {
             return state.numberOfQuestions
         },
+        getAnswerForQuestionLetter: (state) => {
+            return (questionNo, reqAnswerLetter) => {  
+                let reqQuestionNo = questionNo - 1;
+                let answer = state.questionData[reqQuestionNo].possibleAnswers
+                             .find(a => a.answerLetter == reqAnswerLetter)
+                return answer.answerText
+            } 
+        },
         getScore: (state) => {
             return state.questionData
                 .filter(q => q.userAnswerLetter === q.correctAnswerLetter)
                 .length;
-        }
+        },
+        getIsCorrect: (state) => {
+            return (questionNo) => {  
+                console.log('question no = ' + questionNo);
+                console.log('state.questionData = ' + state.questionData)
+                return state.questionData[questionNo-1].userAnswerLetter  
+                        ==  state.questionData[questionNo-1].correctAnswerLetter 
+            } 
+        },        
     },
     actions: {
         setCategory(category) {
@@ -50,7 +70,8 @@ export const useQuizStore = defineStore('quiz', {
         async loadQuestions() {
             try {
                 const questions = await fetchQuestions(this.selectedCategory, 
-                                                       this.selectedDifficulty);
+                                                       this.selectedDifficulty,
+                                                       this.numberOfQuestions);
                 this.questionData = questions;
             } catch (error) {
                 console.error('Error loading questions:', error);

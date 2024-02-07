@@ -2,9 +2,10 @@ import './assets/main.css'
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faForward, faBackward } from '@fortawesome/free-solid-svg-icons';
+import { faForward, faBackward, faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faBackward, faForward);
+library.add(faBackward, faForward, faCheck, faXmark);
+
 
 import WebFont from 'webfontloader';
 

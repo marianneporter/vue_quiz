@@ -80,15 +80,7 @@
     .question {
         margin-top: 3rem;
     }
-    .text-div {
-        padding: 0.75rem;
-        width: 100%;
-        margin-bottom: 0.5rem;
-        background-color: white;
-        color: #012746;
-     
-        border-radius: 0.4rem;
-    }
+
 
     .question-text {
         margin-bottom: 1.5rem; 

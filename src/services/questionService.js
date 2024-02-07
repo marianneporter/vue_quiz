@@ -3,10 +3,10 @@ import { QuestionData } from '@/models/QuestionData'
 
 const BASE_URL = 'https://the-trivia-api.com/v2'; 
 
-export const fetchQuestions = async (category, difficulty) => {
+export const fetchQuestions = async (category, difficulty, noOfQuestions) => {
     try {
         const response = await axios.get(`${BASE_URL}/questions`, {
-            params: { category, difficulty },
+            params: { category, difficulty, limit: noOfQuestions },
         });       
        
        const formattedQuestions

@@ -13,6 +13,11 @@ button {
     border: none;
 }
 
+ul {
+    list-style-type: none; 
+}
+  
+
 .centered {
     width: 100%;
     text-align: center;   
@@ -81,4 +86,13 @@ button {
     cursor: pointer;
     border-radius: 8px;
     transition: background-color 0.3s, color 0.3s;
+}
+
+.text-div {
+    padding: 0.75rem;
+    width: 100%;
+    margin-bottom: 0.5rem;
+    background-color: white;
+    color: #012746; 
+    border-radius: 0.4rem;
 }

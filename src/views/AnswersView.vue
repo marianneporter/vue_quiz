@@ -5,6 +5,8 @@
     const router = useRouter();
     const store = useQuizStore();   
 
+    const questionData = store.getQuestionData;
+
     const startNewQuiz = () => {
         store.resetQuestions();
         router.replace({ name: 'start' });
@@ -17,6 +19,30 @@
         <h1>You scored {{ store.getScore }} out of {{ store.getQuestionCount }}</h1>
         <button class="lg-purple-btn" @click="startNewQuiz">Play Again</button>
    </header>
+   <main>
+        <ul>
+            <li v-for="question in questionData" :key="question.questionNo"
+                class="text-div">
+                <p>Question {{ question.questionNo }}</p>
+                {{ question.questionText }}
+                <hr>
+                <div class="answers">
+                    <div class="question-answer">
+                        <p>Your Answer:
+                        {{ store.getAnswerForQuestionLetter(question.questionNo, question.userAnswerLetter) }}</p>
+                        <p>Correct Answer:
+                        {{ store.getAnswerForQuestionLetter(question.questionNo, question.correctAnswerLetter) }}</p>
+                    </div>
+                    <div class="check">
+                        <font-awesome-icon v-if="store.getIsCorrect(question.questionNo)" :icon="['fas', 'check']" />
+                        <font-awesome-icon v-else :icon="['fas', 'xmark']" />
+                    </div>
+                </div>
+
+              
+            </li>
+        </ul>
+   </main>
 </template>
 
 <style scoped>
@@ -27,21 +53,31 @@
 
     header {
         display: flex;
-        flex-direction: column;        
-    }
+        flex-direction: column;  
+        margin-top: 1.5rem;
+    }      
+   
 
     header h1 {
         order: 2;
         font-size: 1.35rem;
-        margin-top: 1rem;
-    }
+    }  
 
     header button {
         order: 1;
         max-width: 8rem;
-        margin-left: auto;
-       
-    }    
+        margin-left: auto;       
+    }  
+    
+    main {
+        margin-top:2rem;
+    }
+
+    hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        color: #012746; 
+    }
 
     @media screen and (min-width: 640px) {
         header {
