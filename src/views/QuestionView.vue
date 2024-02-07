@@ -12,7 +12,8 @@
     const questionNo = ref(+route.params.questionNo)
   
     // set up computed property for question to obtain reactivity
-    const question = computed(() => store.getQuestion(questionNo.value - 1))  
+    const question = computed(() => store.getQuestion(questionNo.value - 1)) 
+    const questionCount = store.getQuestionCount; 
  
     const selectedAnswer = ref(null);
 
@@ -54,15 +55,14 @@
         <div class="navigate">
             
             <RouterLink :to="{ name: 'question', params: { questionNo: questionNo - 1 }}"
-                 v-if="questionNo != 1" type="submit" name="action" 
-                 value="previous" class="prev-btn">
+                 v-if="questionNo != 1" class="prev-btn">
                 <font-awesome-icon :icon="['fas', 'backward']" /> Previous</RouterLink>         
          
             <RouterLink  :to="{ name: 'question', params: { questionNo: questionNo + 1 }}" 
-                v-if="questionNo !=10" type="submit" name="action" value="next" class="next-btn">
+                v-if="questionNo != questionCount"  class="next-btn">
                 Next <font-awesome-icon :icon="['fas', 'forward']" /></RouterLink> 
                 
-            <button v-if="questionNo == 10" class="finish-button"
+            <button v-if="questionNo == questionCount" class="lg-purple-btn"
                     @click="finishQuiz">Finish</button>           
             
         </div>
@@ -125,19 +125,5 @@
         background-color: transparent;
     }
 
-    
-.finish-button {
-    background-color: #a56cc1;
-    border: 2px solid white;
-    color: #f0f0f0; 
-    padding: 0.75rem 2rem;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 1.1rem;
-    font-weight: 600;   
-    cursor: pointer;
-    border-radius: 8px;
-    transition: background-color 0.3s, color 0.3s;
-}
+ 
 </style>

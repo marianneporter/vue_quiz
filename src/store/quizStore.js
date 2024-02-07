@@ -6,7 +6,8 @@ export const useQuizStore = defineStore('quiz', {
         return {  
             questionData: [],  
             selectedCategory: null,
-            selectedDifficulty: null           
+            selectedDifficulty: null,
+            numberOfQuestions: 10           
         };
     },
     getters: {
@@ -26,6 +27,14 @@ export const useQuizStore = defineStore('quiz', {
             return (questionNo) => {  
                 return state.questionData[questionNo]
             } 
+        },
+        getQuestionCount: (state) => {
+            return state.numberOfQuestions
+        },
+        getScore: (state) => {
+            return state.questionData
+                .filter(q => q.userAnswerLetter === q.correctAnswerLetter)
+                .length;
         }
     },
     actions: {
@@ -35,6 +44,9 @@ export const useQuizStore = defineStore('quiz', {
         setDifficulty(difficulty) {
             this.selectedDifficulty = difficulty;
         },   
+        setNumberOfQuestions(numberOfQuestions) {
+            this.numberOfQuestions = numberOfQuestions
+        },
         async loadQuestions() {
             try {
                 const questions = await fetchQuestions(this.selectedCategory, 
@@ -47,6 +59,9 @@ export const useQuizStore = defineStore('quiz', {
         },  
         setAnswer(questionNo, answer)  { 
             this.questionData[questionNo].userAnswerLetter = answer
+        },
+        resetQuestions() {
+            this.questionData = [];
         } 
 
     }, 

@@ -4,6 +4,4 @@ export class QuestionData {
     correctAnswerLetter;
     userAnswerLetter = "";
     possibleAnswers = [];   
-
-
 }

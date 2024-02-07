@@ -19,12 +19,16 @@ import { RouterLink, RouterView } from 'vue-router'
     }
 
     .container {
-        width: 30rem;    
-        /* background-color: white;
-        color: #662d91; */
+        width: 100%;       
         color: white;
-        min-height: 100vh;    
-        padding: 2rem;
+        min-height: 100vh;  
+        padding: 1rem;      
+    }
+
+    @media screen and (min-width: 640px) {
+        .container {
+            width: 30rem;  
+        }       
     }
 
 </style>

@@ -11,7 +11,8 @@
 
     onMounted(() => { 
         store.setCategory(defaults.category);
-        store.setDifficulty(defaults.difficulty);       
+        store.setDifficulty(defaults.difficulty);   
+        store.setNumberOfQuestions(defaults.numberOfQuestions)    
     });  
     
     const changeSelectedCategory

@@ -67,3 +67,18 @@ button {
     color: white; 
     
 }
+
+.lg-purple-btn {
+    background-color: #a56cc1;
+    border: 2px solid white;
+    color: #f0f0f0; 
+    padding: 0.75rem 2rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.1rem;
+    font-weight: 600;   
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
+}
