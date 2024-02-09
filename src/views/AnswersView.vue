@@ -34,8 +34,11 @@
                         {{ store.getAnswerForQuestionLetter(question.questionNo, question.correctAnswerLetter) }}</p>
                     </div>
                     <div class="check">
-                        <font-awesome-icon v-if="store.getIsCorrect(question.questionNo)" :icon="['fas', 'check']" />
-                        <font-awesome-icon v-else :icon="['fas', 'xmark']" />
+                        <font-awesome-icon v-if="store.getIsCorrect(question.questionNo)"
+                                           :icon="['fas', 'check']"
+                                           class="correct" />
+                        <font-awesome-icon v-else :icon="['fas', 'xmark']"
+                                           class="incorrect" />
                     </div>
                 </div>
 
@@ -77,6 +80,30 @@
         margin-top: 1rem;
         margin-bottom: 1rem;
         color: #012746; 
+    }
+
+    .answers {
+        display: flex;
+
+    }
+
+    .answers .question-answer {
+        flex: 1 1 0;
+    }
+
+    .answers .check {
+        flex: 0 0 auto;
+        padding-right: 0.5rem;
+    }
+
+    .answers .correct {
+        color: green;
+        font-size: 2rem;
+    }
+
+    .answers .incorrect {
+        color: red;
+        font-size: 2rem;
     }
 
     @media screen and (min-width: 640px) {
