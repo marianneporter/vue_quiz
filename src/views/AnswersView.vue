@@ -15,6 +15,7 @@
 </script>
 
 <template>
+    <div class="inner-container">
     <header>
         <h1>You scored {{ store.getScore }} out of {{ store.getQuestionCount }}</h1>
         <button class="lg-purple-btn" @click="startNewQuiz">Play Again</button>
@@ -40,12 +41,12 @@
                         <font-awesome-icon v-else :icon="['fas', 'xmark']"
                                            class="incorrect" />
                     </div>
-                </div>
-
-              
+                </div>              
             </li>
         </ul>
    </main>
+    </div>
+
 </template>
 
 <style scoped>
@@ -69,7 +70,8 @@
     header button {
         order: 1;
         max-width: 8rem;
-        margin-left: auto;       
+        margin-left: auto;   
+        margin-bottom: 1rem;    
     }  
     
     main {
@@ -121,6 +123,7 @@
 
         header button {
             order: 2;
+            margin-bottom: 0;    
         }
     }
 </style>

@@ -41,7 +41,7 @@
 
 
 <template>
-    <div class="question-page">
+    <div class="question-page inner-container">
         <h1 class="text-div question">Question: {{ questionNo }}</h1>
         <p class="text-div question-text">Q. {{ question.questionText }}</p>
         <ul class="answer-options">
@@ -74,14 +74,14 @@
     .question-page {
         display: flex;
         flex-direction: column;
-        justify-items: space-around;
+        justify-items: space-around; 
+      
     }
 
     .question {
-        margin-top: 3rem;
+        margin-bottom: 1rem;
     }
-
-
+ 
     .question-text {
         margin-bottom: 1.5rem; 
     }
@@ -96,9 +96,8 @@
         color: black;
     }
 
-
-
     .navigate {
+        margin-top: 0.5rem;
         display: flex;
         justify-content: space-between;
         width: 100%;
@@ -115,6 +114,12 @@
     .navigate .prev-btn, .navigate .next-btn {
         color: white;
         background-color: transparent;
+    }
+
+    @media screen and (min-width: 768px) {
+        .question-page {
+            margin-top: 5rem;
+        }
     }
 
  

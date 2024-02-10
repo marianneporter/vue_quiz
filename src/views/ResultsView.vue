@@ -14,7 +14,7 @@
 
 
 <template>
-    <div class="results-page">
+    <div class="results-page inner-container">
 
         <h1>You scored {{ store.getScore }} out of {{ store.getQuestionCount }}</h1>
                

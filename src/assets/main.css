@@ -4,8 +4,32 @@
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;  
 }
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;        
+    min-height: 100vh;  
+    padding: 1rem;   
+    color: white;    
+}
+
+.inner-container {
+    min-height: auto;
+    width: 100%; 
+    max-width: 30rem;   
+}
+
+@media screen and (min-width: 768px) {
+    .inner-container {       
+        width: 75%;  
+    }       
+}
+
+
 
 button {
     background: none;
