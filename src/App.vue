@@ -1,5 +1,5 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+    import { RouterLink, RouterView } from 'vue-router'
 
 </script>
 
@@ -11,10 +11,7 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <style>
     body {
-        /* display: flex;
-        justify-content: center; */
-        background: linear-gradient(to top right, #0f9f88, #001c40);
-     
+        background: linear-gradient(to top right, #0f9f88, #001c40);     
         padding: 0;
     }
 

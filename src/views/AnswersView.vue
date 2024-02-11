@@ -18,49 +18,48 @@
     <div class="inner-container">
     <header>
         <h1>You scored {{ store.getScore }} out of {{ store.getQuestionCount }}</h1>
-        <button class="lg-purple-btn" @click="startNewQuiz">Play Again</button>
+        <button class="action-btn" @click="startNewQuiz">Play Again</button>
    </header>
-   <main>
-        <ul>
-            <li v-for="question in questionData" :key="question.questionNo"
-                class="text-div">
-                <p>Question {{ question.questionNo }}</p>
-                {{ question.questionText }}
-                <hr>
-                <div class="answers">
-                    <div class="question-answer">
-                        <p>Your Answer:
-                        {{ store.getAnswerForQuestionLetter(question.questionNo, question.userAnswerLetter) }}</p>
-                        <p>Correct Answer:
-                        {{ store.getAnswerForQuestionLetter(question.questionNo, question.correctAnswerLetter) }}</p>
-                    </div>
-                    <div class="check">
-                        <font-awesome-icon v-if="store.getIsCorrect(question.questionNo)"
-                                           :icon="['fas', 'check']"
-                                           class="correct" />
-                        <font-awesome-icon v-else :icon="['fas', 'xmark']"
-                                           class="incorrect" />
-                    </div>
-                </div>              
-            </li>
-        </ul>
-   </main>
+        <main>
+            <ul>
+                <li v-for="question in questionData" :key="question.questionNo"
+                    class="text-div">
+                    <p>Question {{ question.questionNo }}</p>
+                    {{ question.questionText }}
+                    <hr>
+                    <div class="answers">
+                        <div class="question-answer">
+                            <p>Your Answer:
+                            {{ store.getAnswerForQuestionLetter(question.questionNo, question.userAnswerLetter) }}</p>
+                            <p>Correct Answer:
+                            {{ store.getAnswerForQuestionLetter(question.questionNo, question.correctAnswerLetter) }}</p>
+                        </div>
+                        <div class="check">
+                            <font-awesome-icon v-if="store.getIsCorrect(question.questionNo)"
+                                            :icon="['fas', 'check']"
+                                            class="correct" />
+                            <font-awesome-icon v-else :icon="['fas', 'xmark']"
+                                            class="incorrect" />
+                        </div>
+                    </div>              
+                </li>
+            </ul>
+            <div class="bottom-btn-container">
+                <button class="action-btn"  @click="startNewQuiz">Play Again</button>
+            </div>
+            
+        </main>
     </div>
 
 </template>
 
 <style scoped>
 
-    .lg-purple-btn {
-        padding: 0.65rem  
-    }
-
     header {
         display: flex;
         flex-direction: column;  
         margin-top: 1.5rem;
-    }      
-   
+    }     
 
     header h1 {
         order: 2;
@@ -108,6 +107,20 @@
         font-size: 2rem;
     }
 
+    .action-btn {  
+        padding: 0.75rem 1rem;
+    }
+
+    .bottom-btn-container {          
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .bottom-btn-container .action-btn {
+        width:  100%;
+    }
+
     @media screen and (min-width: 640px) {
         header {
              flex-direction: row; 
@@ -123,7 +136,15 @@
 
         header button {
             order: 2;
-            margin-bottom: 0;    
+            margin-bottom: 0;  
+            max-width: none;  
+        }
+        .action-btn {  
+            padding: 0.75rem 2.5rem;
+        }   
+        
+        .bottom-btn-container .action-btn {
+            width:  auto;
         }
     }
 </style>

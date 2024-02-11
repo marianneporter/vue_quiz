@@ -54,7 +54,7 @@ const getQuestionsAndNavigate = async () => {
             </div>
         </div>
         <div class="centered">
-            <button @click="getQuestionsAndNavigate" class="action-button">Play</button>
+            <button @click="getQuestionsAndNavigate" class="action-btn">Play</button>
         </div>
     </div>
 </template>
@@ -69,7 +69,7 @@ const getQuestionsAndNavigate = async () => {
     margin-bottom: 0.1rem;
 }
 
-.action-button {
+.action-btn {
     margin-top: 1.5rem;
 }
 

@@ -62,7 +62,7 @@
                 v-if="questionNo != questionCount"  class="next-btn">
                 Next <font-awesome-icon :icon="['fas', 'forward']" /></RouterLink> 
                 
-            <button v-if="questionNo == questionCount" class="lg-purple-btn"
+            <button v-if="questionNo == questionCount" class="primary-btn"
                     @click="finishQuiz">Finish</button>           
             
         </div>
@@ -74,8 +74,7 @@
     .question-page {
         display: flex;
         flex-direction: column;
-        justify-items: space-around; 
-      
+        justify-items: space-around;       
     }
 
     .question {

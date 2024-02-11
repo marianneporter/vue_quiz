@@ -20,9 +20,9 @@
                
         <div class="btn-container">
             <RouterLink :to="{ name: 'answers' }" 
-                     class="lg-purple-btn">See Answers</RouterLink> 
+                     class="primary-btn">See Answers</RouterLink> 
 
-            <button class="lg-purple-btn"
+            <button class="primary-btn"
                     @click="startNewQuiz">Play Again</Button> 
         </div> 
     </div>
@@ -42,13 +42,13 @@
         gap: 1rem;
     }
    
-    /* overrides from lg-purple-btn class in main.css */
-    .lg-purple-btn {
+    /* overrides from primary-btn class in main.css */
+    .primary-btn {
         padding: 0;
         height: 2.5rem; 
         width: 9rem;
         display: flex;
         justify-content: center;
         align-items: center;
-    }
+    }   
 </style>
