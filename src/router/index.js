@@ -32,32 +32,41 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    if (to.path.startsWith('/question/')) {
-      const store = useQuizStore()
-      if (store.questionData.length === 0) {
-        // Attempt to restore state from local storage
-        const storedState = localStorage.getItem('quiz') 
-        if (storedState) {
-          const parsedState = JSON.parse(storedState)
-          if (parsedState.quiz && parsedState.quiz.questions && parsedState.quiz.questions.length > 0) {
-            // Restore pinia store
-            store.$patch(parsedState.quiz)
-            next()
-          } else {
-            // Redirect to root if no questions found in storage
-            next('/')
-          }
-        } else {
-          // Redirect to root if no persisted state found
-          next('/')
-        }
-      } else {
-        // Proceed if questions already in store
+    // check if on /question/ route if not continue to route
+    if (!to.path.startsWith('/question/')) {
         next()
-      }
-    } else {
-      next()
+        return
     }
-  })
+    
+    const store = useQuizStore()
+    // questions are already in store continue
+    if (store.questionData.length !== 0) {
+        next()
+        return
+    }
+  
+    // Restore data from local storage if there is any there
+    const storedState = localStorage.getItem('quiz') // Adjust the key if different
+
+    // nothing is in local storage so go to start page
+    if (!storedState) {
+        next('/')
+        return
+    }
+
+    // restore pinia state from local storage so quiz can be continued
+    const parsedState = JSON.parse(storedState)
+    if (parsedState.quiz && parsedState.quiz.questions && parsedState.quiz.questions.length > 0) {
+    // Restore questions to the store
+        store.$patch(parsedState.quiz)
+        next()
+        return
+    } else {
+        // Redirect to root if no questions found in storage
+        next('/')
+        return
+    }     
+
+})
 
 export default router
