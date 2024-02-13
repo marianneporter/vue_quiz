@@ -7,7 +7,8 @@ export const useQuizStore = defineStore('quiz', {
             questionData: [],  
             selectedCategory: null,
             selectedDifficulty: null,
-            numberOfQuestions: 10           
+            numberOfQuestions: 10,
+            quizFinished: false           
         };
     },
     getters: {
@@ -22,6 +23,10 @@ export const useQuizStore = defineStore('quiz', {
             {
                 return state.selectedDifficulty === difficulty
             };
+        },
+
+        isQuizFinished: (state) => {
+            return state.quizFinished
         },
         
         getQuestionData: (state) => {
@@ -79,9 +84,19 @@ export const useQuizStore = defineStore('quiz', {
         setAnswer(questionNo, answer)  { 
             this.questionData[questionNo].userAnswerLetter = answer
         },
+        
         resetQuestions() {
-            this.questionData = [];
-        } 
+            this.questionData = []
+            this.quizFinished = false
+        },
+
+        resetQuizFinished() {
+            this.quizFinished = false
+        },
+
+        finishQuiz() {
+            this.quizFinished = true
+        },         
 
     }, 
     // persist: {

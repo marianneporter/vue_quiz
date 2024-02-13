@@ -2,11 +2,18 @@
     import { useRoute, useRouter } from 'vue-router';
     import { useQuizStore } from '@/store/quizStore'    
 
-    import { computed, watch, ref } from 'vue'
+    import { computed, watch, ref, onMounted } from 'vue'
 
+    const store = useQuizStore();  
     const route = useRoute();
-    const router = useRouter();
-    const store = useQuizStore();   
+    const router = useRouter();    
+
+    onMounted(() => {
+        console.log('in onMounted of question view')
+        if (store.isQuizFinished) {
+            router.push({ name: 'results' })
+        }
+    }); 
 
     // set initial values of question number and get 1st question
     const questionNo = ref(+route.params.questionNo)
@@ -32,6 +39,7 @@
     }
 
     const finishQuiz = () => {
+        store.finishQuiz()
         router.replace({ name: 'results' });
     }
 

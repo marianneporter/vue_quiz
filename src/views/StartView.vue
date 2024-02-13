@@ -13,6 +13,7 @@ onMounted(() => {
     store.setCategory(defaults.category);
     store.setDifficulty(defaults.difficulty);
     store.setNumberOfQuestions(defaults.numberOfQuestions)
+    store.resetQuizFinished();
 });
 
 const changeSelectedCategory
@@ -25,7 +26,6 @@ const getQuestionsAndNavigate = async () => {
     await store.loadQuestions()
     router.push({ name: 'question', params: { questionNo: 1 } });
 }
-
 
 </script>
 
@@ -60,9 +60,6 @@ const getQuestionsAndNavigate = async () => {
 </template>
 
 <style scoped>
-/* .start-page {
-    margin-top: 5%;
-} */
 
 .start-page h3 {
     margin-top: 1rem;
