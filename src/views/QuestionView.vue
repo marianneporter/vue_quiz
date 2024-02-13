@@ -27,13 +27,11 @@
     });
 
     const answerSelected = (answerLetter) => {
-        console.log(answerLetter)
         selectedAnswer.value = answerLetter
         store.setAnswer(questionNo.value - 1, answerLetter)
     }
 
     const finishQuiz = () => {
-        console.log('finish quiz clicked!')
         router.replace({ name: 'results' });
     }
 

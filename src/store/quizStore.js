@@ -49,9 +49,7 @@ export const useQuizStore = defineStore('quiz', {
                 .length;
         },
         getIsCorrect: (state) => {
-            return (questionNo) => {  
-                console.log('question no = ' + questionNo);
-                console.log('state.questionData = ' + state.questionData)
+            return (questionNo) => {   
                 return state.questionData[questionNo-1].userAnswerLetter  
                         ==  state.questionData[questionNo-1].correctAnswerLetter 
             } 
@@ -86,8 +84,8 @@ export const useQuizStore = defineStore('quiz', {
         } 
 
     }, 
-    persist: {
-        storage: sessionStorage, 
-    },
-  //  persist: true
+    // persist: {
+    //     storage: sessionStorage, 
+    // },
+     persist: true
 });
