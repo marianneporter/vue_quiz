@@ -44,7 +44,7 @@ ul {
     text-align: center;   
 }
 
-.outline-button {
+.outline-btn {
     background-color: transparent;
     border: 2px solid #a56cc1;
     color: #f0f0f0; 
@@ -58,12 +58,12 @@ ul {
     transition: background-color 0.3s, color 0.3s;
 }
   
-.outline-button:hover {
+.outline-btn:hover {
     background-color: #a56cc1;;
     color: white;
 }
 
-.selected-outline-button {
+.selected-outline-btn {
     background-color: #a56cc1; 
     color: white;
     border-color: white;   

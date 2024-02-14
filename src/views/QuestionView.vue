@@ -8,8 +8,7 @@
     const route = useRoute();
     const router = useRouter();    
 
-    onMounted(() => {
-        console.log('in onMounted of question view')
+    onMounted(() => {    
         if (store.isQuizFinished) {
             router.push({ name: 'results' })
         }

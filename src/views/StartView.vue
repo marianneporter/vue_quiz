@@ -36,7 +36,7 @@ const getQuestionsAndNavigate = async () => {
         <div class="option-group">
             <h3 class="centered">Select a category</h3>
             <div v-for="(categoryName, category) in categories" :key="category">
-                <button class="outline-button" :class="{ 'selected-outline-button': store.isCategorySelected(category) }"
+                <button class="outline-btn" :class="{ 'selected-outline-btn': store.isCategorySelected(category) }"
                     @click="changeSelectedCategory(category)">
                     {{ categoryName }}
                 </button>
@@ -46,8 +46,8 @@ const getQuestionsAndNavigate = async () => {
         <div class="option-group">
             <h3 class="centered">Select a difficulty</h3>
             <div v-for="difficulty in difficulties" :key="difficulty">
-                <button class="outline-button"
-                    :class="{ 'selected-outline-button': store.isDifficultySelected(difficulty) }"
+                <button class="outline-btn"
+                    :class="{ 'selected-outline-btn': store.isDifficultySelected(difficulty) }"
                     @click="changeSelectedDifficulty(difficulty)">
                     {{ difficulty }}
                 </button>

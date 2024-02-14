@@ -1,11 +1,27 @@
 <script setup>
     import {  useRouter } from 'vue-router';
-    import { useQuizStore } from '@/store/quizStore'
+    import { useQuizStore } from '@/store/quizStore'   
+    import { ref, computed } from 'vue'
 
     const router = useRouter();
     const store = useQuizStore();   
 
     const questionData = store.getQuestionData;
+
+    const currentFilter = ref('all');
+
+    const filteredQuestions = computed(() => {
+        switch (currentFilter.value) {
+            case 'all':
+            return questionData;
+            case 'incorrect':
+            return questionData.filter(question => !store.getIsCorrect(question.questionNo));
+            case 'correct':
+            return questionData.filter(question => store.getIsCorrect(question.questionNo));
+            default:
+            return questionData;
+        }
+    });
 
     const startNewQuiz = () => {
         store.resetQuestions();
@@ -19,10 +35,29 @@
     <header>
         <h1>You scored {{ store.getScore }} out of {{ store.getQuestionCount }}</h1>
         <button class="action-btn" @click="startNewQuiz">Play Again</button>
+
    </header>
         <main>
+            <div class="filter-btns">
+                <h3>Your Results</h3>
+                <button class="outline-btn"
+                        :class="{'primary-btn': currentFilter === 'all'}"                     
+                        @click="currentFilter = 'all'">
+                        See All
+                </button>
+                <button class="outline-btn"
+                        :class="{'primary-btn': currentFilter === 'incorrect'}"    
+                        @click="currentFilter = 'incorrect'">
+                        Incorrect Only
+                </button>
+                <button class="outline-btn"
+                        :class="{'primary-btn': currentFilter === 'correct'}"    
+                        @click="currentFilter = 'correct'">
+                    Correct Only
+                </button>
+            </div>
             <ul>
-                <li v-for="question in questionData" :key="question.questionNo"
+                <li v-for="question in filteredQuestions" :key="question.questionNo"
                     class="text-div">
                     <p>Question {{ question.questionNo }}</p>
                     {{ question.questionText }}
@@ -70,11 +105,35 @@
         order: 1;
         max-width: 8rem;
         margin-left: auto;   
-        margin-bottom: 1rem;    
+        margin-bottom: 0.25rem;    
     }  
     
     main {
         margin-top:2rem;
+    }
+
+    main .filter-btns {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-bottom: 0.75rem;  
+    }
+
+    main .filter-btns h3 {
+        width: 100%;
+        text-align: center;
+    }
+
+    main .primary-btn {
+        padding: 2px 7px;
+     
+    }
+
+    @media screen and (min-width: 640px)  {
+        main .filter-btns h3 {
+           width: auto;
+        }   
     }
 
     hr {
