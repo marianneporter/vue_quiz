@@ -18,6 +18,7 @@ export const useQuizStore = defineStore('quiz', {
                 return state.selectedCategory === category                
              };
         },
+
         isDifficultySelected: (state) => {
             return (difficulty) =>
             {
@@ -32,14 +33,17 @@ export const useQuizStore = defineStore('quiz', {
         getQuestionData: (state) => {
             return [ ...state.questionData ]
         },
+
         getQuestion: (state) => {
             return (questionNo) => {  
                 return state.questionData[questionNo]
             } 
         },
+
         getQuestionCount: (state) => {
             return state.numberOfQuestions
         },
+
         getAnswerForQuestionLetter: (state) => {
             return (questionNo, reqAnswerLetter) => {  
                 let reqQuestionNo = questionNo - 1;
@@ -48,11 +52,13 @@ export const useQuizStore = defineStore('quiz', {
                 return answer.answerText
             } 
         },
+
         getScore: (state) => {
             return state.questionData
                 .filter(q => q.userAnswerLetter === q.correctAnswerLetter)
                 .length;
         },
+
         getIsCorrect: (state) => {
             return (questionNo) => {   
                 return state.questionData[questionNo-1].userAnswerLetter  
@@ -64,12 +70,15 @@ export const useQuizStore = defineStore('quiz', {
         setCategory(category) {
             this.selectedCategory = category;
         },
+
         setDifficulty(difficulty) {
             this.selectedDifficulty = difficulty;
-        },   
+        }, 
+
         setNumberOfQuestions(numberOfQuestions) {
             this.numberOfQuestions = numberOfQuestions
         },
+        
         async loadQuestions() {
             try {
                 const questions = await fetchQuestions(this.selectedCategory, 

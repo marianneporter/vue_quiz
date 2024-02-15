@@ -1,9 +1,8 @@
 <script setup>
-    import {  useRouter, useRoute } from 'vue-router';   
+    import {  useRouter } from 'vue-router';   
     import { useQuizStore } from '@/store/quizStore'
 
-    const router = useRouter();
-    const route = useRoute();
+    const router = useRouter();   
     const store = useQuizStore();   
 
     const startNewQuiz = () => {

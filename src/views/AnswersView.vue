@@ -13,13 +13,13 @@
     const filteredQuestions = computed(() => {
         switch (currentFilter.value) {
             case 'all':
-            return questionData;
+                return questionData;
             case 'incorrect':
-            return questionData.filter(question => !store.getIsCorrect(question.questionNo));
+                return questionData.filter(question => !store.getIsCorrect(question.questionNo));
             case 'correct':
-            return questionData.filter(question => store.getIsCorrect(question.questionNo));
+                return questionData.filter(question => store.getIsCorrect(question.questionNo));
             default:
-            return questionData;
+                return questionData;
         }
     });
 
@@ -130,12 +130,6 @@
      
     }
 
-    @media screen and (min-width: 640px)  {
-        main .filter-btns h3 {
-           width: auto;
-        }   
-    }
-
     hr {
         margin-top: 1rem;
         margin-bottom: 1rem;
@@ -198,6 +192,10 @@
             margin-bottom: 0;  
             max-width: none;  
         }
+        main .filter-btns h3 {
+           width: auto;
+        }  
+
         .action-btn {  
             padding: 0.75rem 2.5rem;
         }   

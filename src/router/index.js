@@ -56,7 +56,6 @@ router.beforeEach((to, from, next) => {
     }
 
     // restore pinia state from local storage so quiz can be continued
-    console.log('setting things up from stored state')
     const parsedState = JSON.parse(storedState)
     if (parsedState.quiz && parsedState.quiz.questions && parsedState.quiz.questions.length > 0) {
     // Restore questions to the store
