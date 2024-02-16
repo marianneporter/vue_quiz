@@ -1,29 +1,9 @@
-# vue-quiz
+## Vue Quiz
 
-This template should help get you started developing with Vue 3 in Vite.
+A quiz application written in Vue.js
 
-## Recommended IDE Setup
+The quiz gets it's questions from  The Trivia API  https://the-trivia-api.com/.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+The app is written in Vue.js.  It makes use of Pinia for storage. 
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+A working verson of the app can be found at https://vue-quiz-i5vh.onrender.com
