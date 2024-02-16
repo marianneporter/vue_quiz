@@ -9,6 +9,8 @@
     const questionData = store.getQuestionData;
 
     const currentFilter = ref('all');
+    const score = store.getScore;
+    const questionCount = store.getQuestionCount;
 
     const filteredQuestions = computed(() => {
         switch (currentFilter.value) {
@@ -28,32 +30,44 @@
         router.replace({ name: 'start' });
     }  
 
+    const getAnswer = (questionNo, answerLetter) => {
+
+        if (['A', 'B', 'C', 'D'].includes(answerLetter)) {
+            return store.getAnswerForQuestionLetter(questionNo, answerLetter)
+        } else {
+            return ''
+        }
+    }
+
 </script>
 
 <template>
     <div class="inner-container">
     <header>
-        <h1>You scored {{ store.getScore }} out of {{ store.getQuestionCount }}</h1>
+        <h1>You scored {{ score }} out of {{ questionCount }}</h1>
         <button class="action-btn" @click="startNewQuiz">Play Again</button>
 
    </header>
         <main>
             <div class="filter-btns">
-                <h3>Your Results</h3>
-                <button class="outline-btn"
-                        :class="{'primary-btn': currentFilter === 'all'}"                     
-                        @click="currentFilter = 'all'">
+                <h3>Your Results</h3>                
+                <button v-if="score !== 0 && score !==questionCount"
+                    class="outline-btn"
+                    :class="{'primary-btn': currentFilter === 'all'}"                     
+                    @click="currentFilter = 'all'">
                         See All
                 </button>
-                <button class="outline-btn"
-                        :class="{'primary-btn': currentFilter === 'incorrect'}"    
-                        @click="currentFilter = 'incorrect'">
+                <button v-if="score !== 0 && score !==questionCount"
+                    class="outline-btn"
+                    :class="{'primary-btn': currentFilter === 'incorrect'}"                     
+                    @click="currentFilter = 'incorrect'">
                         Incorrect Only
                 </button>
-                <button class="outline-btn"
-                        :class="{'primary-btn': currentFilter === 'correct'}"    
-                        @click="currentFilter = 'correct'">
-                    Correct Only
+                <button v-if="score !== 0 && score !==questionCount" 
+                    class="outline-btn"
+                    :class="{'primary-btn': currentFilter === 'correct'}"                     
+                    @click="currentFilter = 'correct'">
+                       Correct Only
                 </button>
             </div>
             <ul>
@@ -65,9 +79,9 @@
                     <div class="answers">
                         <div class="question-answer">
                             <p>Your Answer:
-                            {{ store.getAnswerForQuestionLetter(question.questionNo, question.userAnswerLetter) }}</p>
-                            <p>Correct Answer:
-                            {{ store.getAnswerForQuestionLetter(question.questionNo, question.correctAnswerLetter) }}</p>
+                            {{ getAnswer(question.questionNo, question.userAnswerLetter) }}</p>
+                            <p v-if="!store.getIsCorrect(question.questionNo)">Correct Answer:
+                            {{ getAnswer(question.questionNo, question.correctAnswerLetter) }}</p>
                         </div>
                         <div class="check">
                             <font-awesome-icon v-if="store.getIsCorrect(question.questionNo)"

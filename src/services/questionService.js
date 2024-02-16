@@ -6,7 +6,10 @@ const BASE_URL = 'https://the-trivia-api.com/v2';
 export const fetchQuestions = async (category, difficulty, noOfQuestions) => {
     try {
         const response = await axios.get(`${BASE_URL}/questions`, {
-            params: { category, difficulty, limit: noOfQuestions },
+            params: { categories: category,
+                      difficulty: difficulty.toLowerCase(),
+                      limit: noOfQuestions,
+                      region: 'GB' },
         });       
        
        const formattedQuestions
